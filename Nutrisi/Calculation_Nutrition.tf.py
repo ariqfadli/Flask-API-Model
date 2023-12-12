@@ -4,7 +4,7 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
-file_path = "D:\\CAPESTONE\\Nutrisi\\data_train_nutri.csv"
+file_path = r"D:\python\API Model\ML_REPO\Nutrisi\data_train_nutri.csv"
 df = pd.read_csv(file_path)
 
 features = df.iloc[:, 1:-1]

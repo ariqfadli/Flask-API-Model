@@ -2,8 +2,8 @@ import csv
 import pandas as pd
 
 def hitung_total_nutrisi():
-    file_path = r'D:\CAPESTONE\Nutrisi\nutrisi_fix.csv'
-
+    file_path = r'D:\python\API Model\ML_REPO\Nutrisi\data_train_nutri.csv'
+# 'D:\CAPESTONE\Nutrisi\nutrisi_fix.csv'
     columns = ['VIt. A', 'Vit. B', 'Vit. C', 'Vit. D', 'Vit. E', 'Vit. K', 'Protein (g)', 'Mineral (%)', 'Energi (Kal)', 'Lemak  (g)', 'Kalsium (mg)', 'Zat Besi (gr)', 'Serat (g)', 'Karbohidrad (gr)', 'Fosfor (mg)', 'Magnesium (mg)', 'Natrium (mg)', 'Kalium (mg)']
     df_total_nutrisi = pd.DataFrame(0, index=[0], columns=columns)
 

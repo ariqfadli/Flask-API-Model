@@ -7,8 +7,9 @@ from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras import regularizers
 from sklearn.metrics import classification_report, roc_auc_score
+from joblib import dump
 
-file_path = r'D:\CAPESTONE\Stunting\data_train_stunting.csv'
+file_path = r'D:\python\API Model\ML_REPO\Stunting\data_train_stunting.csv' 
 data = pd.read_csv(file_path)
 
 data = data.dropna()
@@ -37,11 +38,14 @@ model = Sequential([
 optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
 model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
 
-early_stopping = EarlyStopping(monitor='val_loss', patience=100  )
+early_stopping = EarlyStopping(monitor='val_loss', patience=100)
 
 model.fit(X_train_scaled, y_train, epochs=1000, batch_size=32, validation_split=0.2, callbacks=[early_stopping])
 
 model.save('stunting.h5')
+
+# Save the trained scaler
+dump(scaler, 'scaler.pkl')
 
 test_loss, test_accuracy = model.evaluate(X_test_scaled, y_test)
 print(f"Test Accuracy: {test_accuracy}")
