@@ -4,10 +4,14 @@ const getAllUsers = async (req, res) => {
   try {
     const [data] = await UsersModel.getAllUsers();
 
-    res.status(200).json({ message: "Success", data: data });
+    res
+      .status(200)
+      .json({ message: "Success", data: data });
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ message: "Failed" });
+    res
+      .status(500)
+      .json({ message: "Failed" });
   };
 };
 
@@ -17,10 +21,14 @@ const getUserByID = async (req, res) => {
 
     const [data] = await UsersModel.getUserByID(parseInt(idUser));
 
-    res.status(200).json({ message: "Success", data: data });
+    res
+      .status(200)
+      .json({ message: "Success", data: data });
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ message: "Failed" });
+    res
+      .status(500)
+      .json({ message: "Failed" });
   };
 };
 
@@ -37,18 +45,23 @@ const createNewUser = async (req, res) => {
 
     await UsersModel.createNewUser(body);
 
-    res.status(201).json({ message: "User successfully created", data: body });
+    res
+      .status(201)
+      .json({ message: "User data successfully created", data: body });
 
     console.log(req.body);
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ message: "Failed" });
+    res
+      .status(500)
+      .json({ message: "Failed" });
   };
 };
 
 const updateUser = async (req, res) => {
   const { id: idUser } = req.params;
   const { body } = req;
+  console.log(body);
 
   try {
     // Check for user
@@ -58,13 +71,17 @@ const updateUser = async (req, res) => {
 
     await UsersModel.updateUser(body, idUser);
 
-    res.status(200).json({
-      message: "User successfully updated",
-      data: { idUser, ...body }
-    });
+    res
+      .status(200)
+      .json({
+        message: "User data successfully updated",
+        data: { idUser, ...body }
+      });
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ message: "Failed" });
+    res
+      .status(500)
+      .json({ message: "Failed" });
   };
 };
 
@@ -78,12 +95,16 @@ const deleteUser = async (req, res) => {
 
     await UsersModel.deleteUser(idUser);
 
-    res.status(200).json({
-      message: "User successfully deleted",
-    });
+    res
+      .status(200)
+      .json({
+        message: "User data successfully deleted",
+      });
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ message: "Failed" });
+    res
+      .status(500)
+      .json({ message: "Failed" });
   };
 };
 

@@ -23,7 +23,10 @@ const createNewUser = body => {
 const updateUser = ({ fullName, email, password }, idUser) => {
   const SQLQuery = `
     UPDATE users
-    SET fullName = "${fullName}", email = "${email}", password = "${password}"
+    SET
+      FullName = IFNULL(${!fullName ? null : `'${fullName}'`}, FullName),
+      Email = IFNULL(${!email ? null : `'${email}'`}, Email),
+      \`Password\` = IFNULL(${!password ? null : `'${password}'`}, \`Password\`)
     WHERE UserID LIKE ${parseInt(idUser)}
   `;
 
