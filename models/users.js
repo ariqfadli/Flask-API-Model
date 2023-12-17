@@ -6,8 +6,8 @@ const getAllUsers = () => {
   return dbPool.execute(SQLQuery);
 };
 
-const getUserByID = idUser => {
-  const SQLQuery = `SELECT * FROM users WHERE UserID LIKE ${idUser}`;
+const getUserByID = idParam => {
+  const SQLQuery = `SELECT * FROM users WHERE UserID LIKE ${idParam}`;
 
   return dbPool.execute(SQLQuery);
 };
@@ -20,23 +20,23 @@ const createNewUser = body => {
   return dbPool.execute(SQLQuery);
 };
 
-const updateUser = ({ fullName, email, password }, idUser) => {
+const updateUser = ({ fullName, email, password }, idParam) => {
   const SQLQuery = `
     UPDATE users
     SET
       FullName = IFNULL(${!fullName ? null : `'${fullName}'`}, FullName),
       Email = IFNULL(${!email ? null : `'${email}'`}, Email),
       \`Password\` = IFNULL(${!password ? null : `'${password}'`}, \`Password\`)
-    WHERE UserID LIKE ${parseInt(idUser)}
+    WHERE UserID LIKE ${parseInt(idParam)}
   `;
 
   return dbPool.execute(SQLQuery);
 };
 
-const deleteUser = idUser => {
+const deleteUser = idParam => {
   const SQLQuery = `
     DELETE FROM users
-    WHERE UserID LIKE ${parseInt(idUser)}
+    WHERE UserID LIKE ${parseInt(idParam)}
   `;
 
   return dbPool.execute(SQLQuery);

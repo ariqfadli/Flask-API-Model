@@ -64,14 +64,14 @@ const updateChild = async (req, res) => {
 
   try {
     // Check for user
-    const [existingUser] = await ChildsModel.getUserByID(idChild);
+    const [existingUser] = await ChildsModel.getChildByID(idChild);
 
-    if (existingUser.length === 0) res.status(404).json({ message: "User not found" });
+    if (existingUser.length === 0) res.status(404).json({ message: "Child data not found" });
 
     await ChildsModel.updateUser(body, idChild);
 
     res.status(200).json({
-      message: "User successfully updated",
+      message: "Child data successfully updated",
       data: { idChild, ...body }
     });
   } catch (error) {
@@ -80,18 +80,18 @@ const updateChild = async (req, res) => {
   };
 };
 
-const deleteUser = async (req, res) => {
+const deleteChild = async (req, res) => {
   const { id: idChild } = req.params;
 
   try {
-    const [existingUser] = await ChildsModel.getUserByID(idChild);
+    const [existingChild] = await ChildsModel.getUserByID(idChild);
 
-    if (existingUser.length === 0) res.status(404).json({ message: "User not found" });
+    if (existingChild.length === 0) res.status(404).json({ message: "Child not found" });
 
-    await ChildsModel.deleteUser(idChild);
+    await ChildsModel.deleteChild(idChild);
 
     res.status(200).json({
-      message: "User successfully deleted",
+      message: "Child data successfully deleted",
     });
   } catch (error) {
     console.log(error.message);
@@ -101,9 +101,9 @@ const deleteUser = async (req, res) => {
 
 
 module.exports = {
-  getAllUsers,
-  getUserByID,
-  createNewUser,
-  updateUser,
-  deleteUser
+  getAllChilds,
+  getChildByID,
+  createNewChild,
+  updateChild,
+  deleteChild
 };
